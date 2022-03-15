@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->foreignId('client_id');
+            $table->foreignId('user_id');
+            $table->date('date');
+            $table->integer('status')->default(0);
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

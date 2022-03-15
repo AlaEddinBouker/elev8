@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
@@ -46,7 +47,16 @@ Route::prefix('customers')->middleware("auth")->group(function(){
     Route::post('/delete/{customer}', [CustomerController::class, 'delete'])->name('customers.delete');
 
 });
+Route::prefix('actions')->middleware("auth")->group(function(){
 
+    Route::get('/',[ActionController::class,'index'])->name('actions');
+    Route::get('/create',[ActionController::class,'create'])->name('actions.create');
+    Route::post('/store',[ActionController::class,'store'])->name('actions.store');
+    Route::get('/edit/{customer}',[ActionController::class,'edit'])->name('actions.edit');
+    Route::post('/update',[ActionController::class,'update'])->name('actions.update');
+    Route::post('/delete/{customer}', [ActionController::class, 'delete'])->name('actions.delete');
+
+});
 Route::prefix('account')->middleware("auth")->group(function(){
     Route::get('setting',[AccountController::class,'index'])->name('account.setting');
     Route::post('details', [AccountController::class, 'details'])->name('account.details');

@@ -52,4 +52,13 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
 }
