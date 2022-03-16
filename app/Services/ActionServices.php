@@ -3,10 +3,11 @@ namespace App\Services;
 
 use App\Models\Action;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class CustomerServices
+class ActionServices
 {
 
     public function fetchCustomers()
@@ -28,6 +29,15 @@ class CustomerServices
         }
 
         return $actions;
+    }
+
+    public function createAction(Request $request)
+    {
+        Action::create($request->all());
+    }
+    public function updateAction(Request $request)
+    {
+        Action::findorfail($request->id)->update($request->all());
     }
 
 }

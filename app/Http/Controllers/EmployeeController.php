@@ -40,7 +40,7 @@ class EmployeeController extends Controller
     }
     public function delete($user)
     {
-        $delete = User::findorfail($user)->delete();
+      $delete = (new userServices())->delete($user);
         if ($delete == 1) {
             $success = true;
             $message = 'User deleted successfully';

@@ -52,9 +52,9 @@ Route::prefix('actions')->middleware("auth")->group(function(){
     Route::get('/',[ActionController::class,'index'])->name('actions');
     Route::get('/create',[ActionController::class,'create'])->name('actions.create');
     Route::post('/store',[ActionController::class,'store'])->name('actions.store');
-    Route::get('/edit/{customer}',[ActionController::class,'edit'])->name('actions.edit');
+    Route::get('/edit/{action}',[ActionController::class,'edit'])->name('actions.edit');
     Route::post('/update',[ActionController::class,'update'])->name('actions.update');
-    Route::post('/delete/{customer}', [ActionController::class, 'delete'])->name('actions.delete');
+    Route::post('/delete/{action}', [ActionController::class, 'delete'])->name('actions.delete');
 
 });
 Route::prefix('account')->middleware("auth")->group(function(){

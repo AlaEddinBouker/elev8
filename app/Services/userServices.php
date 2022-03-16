@@ -63,4 +63,12 @@ class userServices extends Controller
             ]);
         }
     }
+    public function delete($employee)
+    {
+        $user = User::findorfail($employee);
+        $user->customers()->update(['user_id' => null]);
+        $user->actions()->update(['user_id' => null]);
+        $delete = User::findorfail($employee)->delete();
+        return $delete;
+    }
 }

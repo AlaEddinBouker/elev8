@@ -40,6 +40,7 @@ class CustomerController extends Controller
     }
     public function delete($customer)
     {
+        Customer::findorfail($customer)->actions()->update(['customer_id'=>null]);
         $delete = Customer::findorfail($customer)->delete();
         if ($delete == 1) {
             $success = true;
