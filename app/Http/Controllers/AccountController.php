@@ -32,6 +32,7 @@ class AccountController extends Controller
     }
     public function password(Request $request)
     {
+       
         $request->validate([
             'password' => ['required', 'confirmed'],
             'currentpassword'=>['required',new ConfirmationPassword]

@@ -315,7 +315,7 @@
                                                 New Password</label>
                                             <input type="password"
                                                 class="form-control form-control-lg form-control-solid @error('confirm_password') is-invalid @enderror"
-                                                name="confirm_password" id="confirmpassword" />
+                                                name="password_confirmation" id="confirmpassword" />
                                         </div>
                                     </div>
                                 </div>
