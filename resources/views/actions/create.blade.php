@@ -114,7 +114,7 @@ Create Action
                             <rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Create new customer
+                    <!--end::Svg Icon-->Create new employee
                 </a>
                 <!--end::Button-->
 

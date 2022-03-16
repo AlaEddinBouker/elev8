@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\User;
+use App\Services\ActionServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -25,6 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         Session::put('page', 'dashboard');
-        return view('home');
+        $employees = User::where('is_admin','!=',0)->count();
+        $customers = (new ActionServices())->fetchCustomers()->count();
+        $actions = (new ActionServices())->fetchActions()->count();
+
+        return view('home',compact('employees','actions','customers'));
     }
 }
