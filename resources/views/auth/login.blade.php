@@ -3,12 +3,9 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <title>BillieJeanRecors</title>
+    <title>Technical Assessment</title>
     <meta charset="utf-8" />
-    <meta name="description"
-        content="Good admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
-    <meta name="keywords"
-        content="Good, bootstrap, bootstrap 5, admin themes, free admin themes, bootstrap admin, bootstrap dashboard, bootstrap dark mode" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
 
@@ -55,12 +52,12 @@
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
-                        <h1 class="fw-bolder text-white fs-2qx pb-5 pb-md-10">BillieJeanRecords</h1>
+                        <h1 class="fw-bolder text-white fs-2qx pb-5 pb-md-10">Technical Assesement</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <p class="fw-bold fs-2 text-white">This is the introduction that you'll never read
-                            <br />if you do so oh well !
-                        </p>
+                       
+                        <h2 class="text-white">Email : admin@admin.com</h2>
+                        <h2 class="text-white">password : password</h2>
                         <!--end::Description-->
                     </div>
                     <!--end::Header-->
@@ -85,7 +82,7 @@
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
-                                <h1 class="text-dark mb-3">Sign In to BillieJeanRecords</h1>
+                                <h1 class="text-dark mb-3">Sign In to Technical assignment</h1>
 
                                 <!--end::Link-->
                             </div>

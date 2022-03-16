@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('employees')->middleware("auth")->group(function(){
+Route::prefix('employees')->middleware("auth",'admin')->group(function(){
 
     Route::get('/',[EmployeeController::class,'index'])->name('employees');
     Route::get('/create',[EmployeeController::class,'create'])->name('employees.create');
@@ -44,7 +44,7 @@ Route::prefix('customers')->middleware("auth")->group(function(){
     Route::post('/store',[CustomerController::class,'store'])->name('customers.store');
     Route::get('/edit/{customer}',[CustomerController::class,'edit'])->name('customers.edit');
     Route::post('/update',[CustomerController::class,'update'])->name('customers.update');
-    Route::post('/delete/{customer}', [CustomerController::class, 'delete'])->name('customers.delete');
+    Route::post('/delete/{customer}', [CustomerController::class, 'delete'])->name('customers.delete')->middleware('admin');
 
 });
 Route::prefix('actions')->middleware("auth")->group(function(){
@@ -54,7 +54,7 @@ Route::prefix('actions')->middleware("auth")->group(function(){
     Route::post('/store',[ActionController::class,'store'])->name('actions.store');
     Route::get('/edit/{action}',[ActionController::class,'edit'])->name('actions.edit');
     Route::post('/update',[ActionController::class,'update'])->name('actions.update');
-    Route::post('/delete/{action}', [ActionController::class, 'delete'])->name('actions.delete');
+    Route::post('/delete/{action}', [ActionController::class, 'delete'])->name('actions.delete')->middleware('admin');
 
 });
 Route::prefix('account')->middleware("auth")->group(function(){

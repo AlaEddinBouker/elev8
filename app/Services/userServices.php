@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -65,6 +66,9 @@ class userServices extends Controller
     }
     public function delete($employee)
     {
+        if(Auth::user()->id == $employee){
+            return $delete=0;
+        }
         $user = User::findorfail($employee);
         $user->customers()->update(['user_id' => null]);
         $user->actions()->update(['user_id' => null]);
