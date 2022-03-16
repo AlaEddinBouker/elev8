@@ -185,10 +185,13 @@ Actions
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
+                            @if(Auth::user()->isAdmin())
                             <div class="menu-item px-3">
                                 <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row"
                                     onclick="deleteConfirmation({{ $action->id }})">Delete</a>
                             </div>
+                            @endif
+
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu-->
