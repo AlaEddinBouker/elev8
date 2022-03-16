@@ -133,11 +133,17 @@ Customers
                             <div class="menu-item px-3">
                                 <a href="{{ route('customers.edit',['customer'=>$customer]) }}" class="menu-link px-3">Edit</a>
                             </div>
+                            <div class="menu-item px-3">
+                                <a href="{{ route('customers.action',['customer'=>$customer]) }}" class="menu-link px-3">Create Action</a>
+                            </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
+                            @if (Auth::user()->isAdmin())
                             <div class="menu-item px-3">
                                 <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row" onclick="deleteConfirmation({{ $customer->id }})">Delete</a>
                             </div>
+                            @endif
+
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu-->

@@ -231,7 +231,7 @@ Create Action
                             <!--begin::Input group-->
                             <div class="mb-10 fv-row">
                                 <!--begin::Label-->
-                                <label class="form-label">Date</label>
+                                <label class="form-label required">Date</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input class="form-control @error('date') is-invalid @enderror" placeholder="Pick a date" id="kt_datepicker_1" name="date" />

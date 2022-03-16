@@ -70,11 +70,16 @@ quill.on('text-change', function(delta, oldDelta, source) {
                 <!--begin::Select2-->
                 <select class="form-select mb-2 @error('user_id') is-invalid  @enderror" data-control="select2"
                     data-placeholder="Select an option" data-allow-clear="true" name="user_id">
-
+                    <option></option>
+                    @if (Auth::user()->isAdmin())
                     @foreach ($users as $item)
                     <option value="{{ $item->id }}" @if ($item->id == old('user_id')) selected @endif>{{ $item->name
                         }}</option>
                     @endforeach
+                    @else
+                    <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->name}}</option>
+                    @endif)
+
                 </select>
                 <!--end::Select2-->
                 <!--begin::Description-->

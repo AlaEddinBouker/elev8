@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 @section('title')
-Update Action
+Create Action
 @endsection
 @section('extra-css')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -19,16 +19,15 @@ Update Action
 <li class="breadcrumb-item">
     <span class="bullet bg-gray-300 w-5px h-2px"></span>
 </li>
-<li class="breadcrumb-item text-muted">Update Action</li>
+<li class="breadcrumb-item text-muted">Create Action</li>
 @endsection
 
 @section('content')
 
 
 <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" method="POST"
-    action="{{ route('actions.update') }}" enctype="multipart/form-data">
+    action="{{ route('actions.store') }}" enctype="multipart/form-data">
     @csrf
-    <input type="hidden" name="id" value="{{ $action->id }}">
     <!--begin::Aside column-->
     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
 
@@ -43,18 +42,7 @@ Update Action
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
-                    @switch($action->status)
-                    @case(0)
                     <div class="rounded-circle bg-warning w-15px h-15px" id="kt_ecommerce_add_product_status"></div>
-                    @break
-                    @case(1)
-                    <div class="rounded-circle bg-success w-15px h-15px" id="kt_ecommerce_add_product_status"></div>
-                    @break
-                    @case(2)
-                    <div class="rounded-circle bg-danger w-15px h-15px" id="kt_ecommerce_add_product_status"></div>
-                    @break
-                    @endswitch
-
                 </div>
                 <!--begin::Card toolbar-->
             </div>
@@ -64,9 +52,9 @@ Update Action
                 <!--begin::Select2-->
                 <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                     data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select" name="status">
-                    <option value="0" @if($action->status ==0) selectd @endif>Ongoing</option>
-                    <option value="1" @if($action->status ==1) selectd @endif>Completed</option>
-                    <option value="2" @if($action->status ==2) selectd @endif>Canceled</option>
+                    <option value="0" selected="selected">Ongoing</option>
+                    <option value="1">Completed</option>
+                    <option value="2">Canceled</option>
                 </select>
                 <!--end::Select2-->
                 <!--begin::Description-->
@@ -101,7 +89,7 @@ Update Action
                 <select class="form-select mb-2 @error('customer_id') is-invalid  @enderror" data-control="select2"
                     data-placeholder="Select an option" data-allow-clear="true" name="user_id">
                     @foreach ($users as $item)
-                    <option value="{{ $item->id }}" @if ($item->id == $action->user_id) selected @endif>{{ $item->name
+                    <option value="{{ $item->id }}" @if ($item->id == old('user_id')) selected @endif>{{ $item->name
                         }}</option>
                     @endforeach
                 </select>
@@ -158,7 +146,7 @@ Update Action
                 <select class="form-select mb-2 @error('customer_id') is-invalid  @enderror" data-control="select2"
                     data-placeholder="Select an option" data-allow-clear="true" name="customer_id">
                     @foreach ($customers as $item)
-                    <option value="{{ $item->id }}" @if ($item->id == $action->customer_id) selected @endif>{{ $item->name
+                    <option value="{{ $item->id }}" @if ($item->id == old('customer_id') || $item->id == $customer->id) selected @endif>{{ $item->name
                         }}</option>
                     @endforeach
                 </select>
@@ -223,9 +211,9 @@ Update Action
                                 <!--begin::Input-->
                                 <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                     data-placeholder="Select an option" name="type">
-                                    <option value="call"  @if($action->type =="call") selected @endif>call</option>
-                                    <option value="visit" @if($action->type =="visit") selected @endif>visit</option>
-                                    <option value="follow up" @if($action->type =="follow up") selected @endif>follow up</option>
+                                    <option value="call" selected="selected">call</option>
+                                    <option value="visit">visit</option>
+                                    <option value="follow up">follow up</option>
                                 </select>
                                 <!--end::Input-->
                                 <!--begin::Description-->
@@ -246,8 +234,7 @@ Update Action
                                 <label class="form-label required">Date</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control @error('date') is-invalid @enderror"
-                                    placeholder="Pick a date" id="kt_datepicker_1" name="date" value="{{ $action->date }}" />
+                                <input class="form-control @error('date') is-invalid @enderror" placeholder="Pick a date" id="kt_datepicker_1" name="date" />
                                 <!--end::Input-->
                                 <!--begin::Description-->
                                 <div class="text-muted fs-7">A date is required.
@@ -267,8 +254,8 @@ Update Action
                                 <label class=" required form-label">Description</label>
                                 <!--end::Label-->
                                 <!--begin::Editor-->
-                                <div id="quill_description" name="quill_description">{!! $action->description !!}</div>
-                                <textarea name="description" style="display:none" id="hiddenArea">{!! $action->description !!}</textarea>
+                                <div id="quill_description" name="quill_description"></div>
+                                <textarea name="description" style="display:none" id="hiddenArea"></textarea>
 
                                 <div class="text-muted fs-7">Set a description to the action for better visibility.
                                 </div>
@@ -304,7 +291,7 @@ Update Action
             <!--end::Button-->
             <!--begin::Button-->
             <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                <span class="indicator-label">Save changes</span>
+                <span class="indicator-label">Save </span>
                 <span class="indicator-progress">Please wait...
                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
             </button>
@@ -321,6 +308,7 @@ Update Action
     $("#kt_datepicker_1").flatpickr();
 </script>
 <script>
+
     const e = document.getElementById("kt_ecommerce_add_product_status"),
                     t = document.getElementById("kt_ecommerce_add_product_status_select"),
                     o = ["bg-success", "bg-warning", "bg-danger"];

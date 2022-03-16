@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CustomerRequest;
-use App\Models\Customer;
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Services\ActionServices;
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
@@ -37,6 +38,12 @@ class CustomerController extends Controller
         Customer::findorfail($request->id)->update($request->all());
         Session::flash('success_message', 'Customer updated with success');
         return redirect()->route('customers');
+    }
+    public function action(Customer $customer)
+    {
+        $users = User::latest()->get();
+        $customers = (new ActionServices())->fetchCustomers();
+        return view('customers.action',compact('customers','customer','users'));
     }
     public function delete($customer)
     {

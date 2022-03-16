@@ -44,6 +44,7 @@ Route::prefix('customers')->middleware("auth")->group(function(){
     Route::post('/store',[CustomerController::class,'store'])->name('customers.store');
     Route::get('/edit/{customer}',[CustomerController::class,'edit'])->name('customers.edit');
     Route::post('/update',[CustomerController::class,'update'])->name('customers.update');
+    Route::get('/action/{customer}',[CustomerController::class,'action'])->name('customers.action');
     Route::post('/delete/{customer}', [CustomerController::class, 'delete'])->name('customers.delete')->middleware('admin');
 
 });
